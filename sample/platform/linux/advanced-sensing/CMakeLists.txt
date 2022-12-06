@@ -20,7 +20,7 @@
 # *
 # *
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.16.3)
 project(djiosdk-advanced-sensing-sample)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fPIC -pthread -g -O0")
@@ -32,6 +32,8 @@ FILE(GLOB SOURCE_FILES *.hpp *.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../osal/*.c
         ${LINKER_HEADER_SRC}
         )
+
+add_subdirectory(stereo_vision_new_sample_inkub)
 add_subdirectory(stereo_vision_new_sample)
 add_subdirectory(stereo_vision_single_thread_sample)
 add_subdirectory(stereo_vision_multi_thread_sample)

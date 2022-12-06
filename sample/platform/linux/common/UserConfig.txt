@@ -1,4 +1,12 @@
+<<<<<<< Updated upstream
 app_id : your_app_id_here
 app_key : your_key_here
 device : /dev/ttyUSB0
 baudrate : 230400
+=======
+app_id : 1120097
+app_key : 37b42ab3d156fe4df07acb4a897d2e2e1f83375e2bd3259dec3c31e6085583bd
+device : /dev/ttyTHS1
+baudrate : 230400
+acm_port : /dev/ttyACM0
+>>>>>>> Stashed changes

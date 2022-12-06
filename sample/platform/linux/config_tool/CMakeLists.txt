@@ -20,20 +20,25 @@
 # *
 # *
 cmake_minimum_required(VERSION 3.16.3)
-project(djiosdk-hms-sample)
+project(config_tool)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -g -O0")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -g -O0 -Wall -Werror")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../core/inc)
 
-FILE(GLOB SOURCE_FILES *.hpp *.cpp
+FILE(GLOB SOURCE_FILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../common/dji_linux_environment.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../common/dji_linux_helpers.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/../../../core/src/hms_sample.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../../core/src/*.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../hal/*.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../osal/*.c
-        ${LINKER_HEADER_SRC}
         )
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
+if (OSDK_HOTPLUG)
+    FILE(GLOB SOURCE_FILES ${SOURCE_FILES} ${CMAKE_CURRENT_SOURCE_DIR}/../hal/hotplug/*.c)
+endif ()
+
+add_executable(MatriceSeries_ConfigTool
+        ${SOURCE_FILES})
 

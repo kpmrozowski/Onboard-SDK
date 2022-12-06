@@ -21,6 +21,7 @@
 #include "linux_usb_device.hpp"
 #include <algorithm>
 #include <iterator>
+#include <cstring>
 
 #include "iostream"
 
@@ -140,6 +141,8 @@ LinuxUSBDevice::isDJIUSBDevice(uint16_t idVendor, uint16_t idProduct)
 {
   for (int i = 0; i < POSSIBLE_DJI_DEVICE_NUM; ++i)
   {
+    printf("inkub %s\n", std::to_string(DJI_usb_dev_filter[i].pid).c_str());
+    printf("inkub %s\n", std::to_string(DJI_usb_dev_filter[i].vid).c_str());
     if (idVendor == DJI_usb_dev_filter[i].vid &&
       idProduct == DJI_usb_dev_filter[i].pid)
       return true;

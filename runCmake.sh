@@ -1,0 +1,1 @@
+cmake -S. -B build3 -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

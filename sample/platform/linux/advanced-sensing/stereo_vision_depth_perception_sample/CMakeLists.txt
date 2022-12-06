@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.16.3)
 project(stereo-vision-depth-perception-sample)
 
 find_path(OPENCV_CONTRIB_IMG_PROC
@@ -28,14 +28,14 @@ find_path(OPENCV_VIZ
 # Try to see if user has OpenCV installed
 # If there's version 3.3.0+, depth perception samples will be compiled
 # If it's not version 3.3.0+, the sample will not be compiled
-find_package( OpenCV 3.3.0 QUIET )
+find_package( OpenCV 4.6.0 QUIET )
 if (OpenCV_FOUND)
     message( "\n${PROJECT_NAME}...")
     message( STATUS "Found OpenCV ${OpenCV_VERSION} installed in the system, will use it for depth perception sample")
     message( STATUS " - Includes: ${OpenCV_INCLUDE_DIRS}")
     message( STATUS " - Libraries: ${OpenCV_LIBRARIES}")
     add_definitions(-DOPEN_CV_INSTALLED)
-    set(OPEN_CV_3_3_0_INSTALLED 1)
+    set(OPEN_CV_4_6_0_INSTALLED 1)
 
     if(NOT OPENCV_CONTRIB_IMG_PROC STREQUAL OPENCV_CONTRIB_IMG_PROC-NOTFOUND)
         message(STATUS "Found ximgproc module in OpenCV, will use it to filter disparity map in depth perception sample")
@@ -77,7 +77,7 @@ set(MULTI_THREAD_SAMPLE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../stereo_vision_multi_t
 include_directories(utility)
 include_directories(${MULTI_THREAD_SAMPLE_DIR})
 
-if (OPEN_CV_3_3_0_INSTALLED AND FOUND_OPENCV_VIZ)
+if (OPEN_CV_4_6_0_INSTALLED AND FOUND_OPENCV_VIZ)
     message(STATUS "Found OpenCV ${OpenCV_VERSION} and Viz3d module, stereo vision depth perception sample will be compiled.")
 
     FILE(GLOB DEPTH_PERCEPTION_SAMPLE_SOURCE_FILES

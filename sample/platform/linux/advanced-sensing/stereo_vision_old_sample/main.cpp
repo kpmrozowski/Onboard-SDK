@@ -34,11 +34,6 @@
 #include <dirent.h>
 #include "dji_vehicle.hpp"
 
-#include <iostream>
-#include <iomanip>
-#include <ctime>
-#include <sstream>
-
 using namespace DJI::OSDK;
 
 #define IMAGE_FILE_PATH                "./image"
@@ -150,16 +145,6 @@ void PerceptionCamParamCB(Perception::CamParamPacketType pack,
     }
 }
 
-std::string actual_time_str() {
-  auto t = std::time(nullptr);
-  auto tm = *std::localtime(&t);
-
-  std::ostringstream oss;
-  oss << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
-  auto str = oss.str();
-  return str;
-}
-
 static void *stereoImagesDisplayTask(void *arg) {
   while (1) {
     OsdkOsal_TaskSleepMs(1);
@@ -172,11 +157,9 @@ static void *stereoImagesDisplayTask(void *arg) {
       OsdkOsal_MutexLock(pack->mutex);
       if (!pack->gotData) {
         OsdkOsal_MutexUnlock(pack->mutex);
-        // std::cout << "continue" << std::endl;
         continue;
       }
-      std::cout << "ifdef 2" << std::endl;
-      cv::Mat cv_img_stereo = cv::Mat(pack->info.rawInfo.height, pack->info.rawInfo.width, CV_8UC3);
+      cv::Mat cv_img_stereo = cv::Mat(pack->info.rawInfo.height, pack->info.rawInfo.width, CV_8U);
       int copySize = pack->info.rawInfo.height * pack->info.rawInfo.width;
       if (pack->imageRawBuffer) {
         memcpy(cv_img_stereo.data, pack->imageRawBuffer, copySize);
@@ -187,14 +170,9 @@ static void *stereoImagesDisplayTask(void *arg) {
       pack->gotData = false;
       OsdkOsal_MutexUnlock(pack->mutex);
       /*! Using Opencv display here */
-      std::string img_path = "/workspace/zimgs/";
-      img_path += actual_time_str() + ".png";
-      // img_path += actual_time_str() + std::to_str(pack->info.rawInfo.timeStamp) + ".png";
-      cv::imwrite(img_path, cv_img_stereo);
-      printf("imwrite, %s\n", img_path.c_str());
-      // cv::waitKey(1);
+      cv::imshow(name, cv_img_stereo);
+      cv::waitKey(1);
 #else
-      std::cout << "else" << std::endl;
       OsdkOsal_MutexLock(pack->mutex);
       if (!pack->gotData) {
         OsdkOsal_MutexUnlock(pack->mutex);

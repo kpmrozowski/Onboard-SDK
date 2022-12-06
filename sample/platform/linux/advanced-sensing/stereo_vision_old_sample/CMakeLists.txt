@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16.3)
-project(stereo-vision-single-thread-sample)
+project(stereo-vision-new-sample-inkub)
 
 # Try to see if user has OpenCV installed
 # if yes, default callback will display the image
@@ -19,7 +19,8 @@ add_executable(${PROJECT_NAME}
         ${SOURCE_FILES}
         ${HELPER_FUNCTIONS_DIR}/dji_linux_environment.cpp
         ${HELPER_FUNCTIONS_DIR}/dji_linux_helpers.cpp
-        stereo_vision_single_thread_sample.cpp
+
+        main.cpp
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${OpenCV_INCLUDE_DIRS})
@@ -29,3 +30,4 @@ if (OpenCV_FOUND)
             ${OpenCV_LIBRARIES}
             )
 endif ()
+
