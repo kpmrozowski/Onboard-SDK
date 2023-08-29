@@ -23,7 +23,7 @@ public:
 
   bool newImageIsReady() const;
 
-  void writeNewImageWithLock(uint8_t* buf, int bufSize, int width, int height, uint64_t time);
+  void writeNewImageWithLock(uint8_t* buf, int bufSize, int width, int height, long time);
   bool getNewImageWithLock(CameraRGBImage & copyOfImage, int timeoutMilliSec);
   pthread_mutex_t& getMutex();
 

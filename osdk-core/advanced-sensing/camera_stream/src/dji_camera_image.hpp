@@ -21,7 +21,7 @@ struct CameraRGBImage
   std::vector<uint8_t> rawData;
   int height;
   int width;
-  uint64_t time;
+  long time;
 };
 
 /*! @brief User callback function called by OSDK (in a dedicated thread)

@@ -196,7 +196,7 @@ void DJICameraStreamDecoder::callbackThreadFunc()
 
 void DJICameraStreamDecoder::decodeBuffer(uint8_t* buf, int bufLen)
 {
-  auto time = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+  long time = std::chrono::high_resolution_clock::now().time_since_epoch().count();
   uint8_t* pData   = buf;
   int remainingLen = bufLen;
   int processedLen = 0;

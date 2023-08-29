@@ -7,7 +7,7 @@
  *
  *  @Copyright (c) 2016-2017 DJI
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * Permission is hereby granted, free of charge, to any person obtaining m_a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -143,7 +143,7 @@ public:
    *  |--------------|------|------------|-------------------------------------------------|
    *  | pitch, roll  | deg  | <1         | in non-ahrs mode                                |
    *  | yaw          | deg  | <3         | for well-calibrated compass with fine alignment |
-   *  | yaw with rtk | deg  | around 1.2 | in RTK heading fixed mode with 1 meter baseline |
+   *  | yaw with m_rtk | deg  | around 1.2 | in RTK heading fixed mode with 1 meter baseline |
    */
   Telemetry::Quaternion    getQuaternion()         ;
 
@@ -247,7 +247,7 @@ public:
    *  | 16    | Single           | Single point position                                  |
    *  | 17    | PSRDIFF          | Pseudorange differential solution                      |
    *  | 18    | WAAS             | Solution calculated using corrections from an SBAS     |
-   *  | 19    | PROPAGATED       | Propagated by a Kalman filter without new observations |
+   *  | 19    | PROPAGATED       | Propagated by m_a Kalman filter without new observations |
    *  | 20    | OMNISTAR         | OmniSTAR VBS position (L1 sub-metre)                   |
    *  | 32    | L1_FLOAT         | Floating L1 ambiguity solution                         |
    *  | 33    | IONOFREE_FLOAT   | Floating ionospheric-free ambiguity solution           |
@@ -263,8 +263,8 @@ public:
    *
    *  @platforms M210V2, M300
    *  @note This getter function is only available with Broadcast, not with Subscribe telemetry
-   *  @details The returned value is calibrated mag data,
-   *           1000 < |mag| < 2000 for normal operation
+   *  @details The returned value is calibrated m_mag data,
+   *           1000 < |m_mag| < 2000 for normal operation
    *  @return Telemetry::Mag data structure with the newest value.
    */
   Telemetry::Mag     getMag()                ;
@@ -287,7 +287,7 @@ public:
    */
   Telemetry::Gimbal     getGimbal()             ;
 
-  /*! Get Status (flight status, mode, gear and error) from local cache
+  /*! Get Status (flight m_status, mode, gear and error) from local cache
    *
    *  @platforms M210V2, M300
    *  @note This getter function is only available with Broadcast, not with Subscribe telemetry
@@ -314,7 +314,7 @@ public:
    */
   Telemetry::SDKInfo     getSDKInfo()            ;
 
-  /*! Get Compass status info from local cache
+  /*! Get Compass m_status info from local cache
    *
    *  @platforms M210V2, M300
    *  @note This getter function is only available with Broadcast, not with Subscribe telemetry
@@ -489,38 +489,38 @@ public:
 
 private:
   // clang-format off
-  Telemetry::TimeStamp           timeStamp   ;
-  Telemetry::SyncStamp           syncStamp   ;
-  Telemetry::Quaternion          q           ;
-  Telemetry::Vector3f            a           ;
-  Telemetry::Vector3f            v           ;
-  Telemetry::Vector3f            w           ;
-  Telemetry::VelocityInfo        vi          ;
-  Telemetry::GlobalPosition      gp          ;
-  Telemetry::RelativePosition    rp          ;
-  Telemetry::GPSInfo             gps         ;
-  Telemetry::RTK                 rtk         ;
-  Telemetry::Mag                 mag         ;
-  Telemetry::RC                  rc          ;
-  Telemetry::Gimbal              gimbal      ;
-  Telemetry::Status              status      ;
-  Telemetry::Battery             battery     ;
-  Telemetry::SDKInfo             info        ;
-  Telemetry::Compass             compass     ;
+  Telemetry::TimeStamp           m_timeStamp   ;
+  Telemetry::SyncStamp           m_syncStamp   ;
+  Telemetry::Quaternion          m_q           ;
+  Telemetry::Vector3f            m_a           ;
+  Telemetry::Vector3f            m_v           ;
+  Telemetry::Vector3f            m_w           ;
+  Telemetry::VelocityInfo        m_vi          ;
+  Telemetry::GlobalPosition      m_gp          ;
+  Telemetry::RelativePosition    m_rp          ;
+  Telemetry::GPSInfo             m_gps         ;
+  Telemetry::RTK                 m_rtk         ;
+  Telemetry::Mag                 m_mag         ;
+  Telemetry::RC                  m_rc          ;
+  Telemetry::Gimbal              m_gimbal      ;
+  Telemetry::Status              m_status      ;
+  Telemetry::Battery             m_battery     ;
+  Telemetry::SDKInfo             m_info        ;
+  Telemetry::Compass             m_compass     ;
   /*
    * @note Broadcast data for Matrice 100/600 older firmware that is fundamentally
    * different from the A3/N3/M600 newer firmware
    */
-  Telemetry::LegacyTimeStamp	    legacyTimeStamp;
-  Telemetry::LegacyVelocity       legacyVelocity;
-  Telemetry::LegacyStatus         legacyStatus;
-  Telemetry::LegacyBattery        legacyBattery;
-  Telemetry::LegacyGPSInfo        legacyGPSInfo;
+  Telemetry::LegacyTimeStamp	    m_legacyTimeStamp;
+  Telemetry::LegacyVelocity       m_legacyVelocity;
+  Telemetry::LegacyStatus         m_legacyStatus;
+  Telemetry::LegacyBattery        m_legacyBattery;
+  Telemetry::LegacyGPSInfo        m_legacyGPSInfo;
   // clang-format on
 private:
-  Vehicle* vehicle;
-  uint16_t passFlag;
-  uint16_t broadcastLength;
+  Vehicle* m_vehicle;
+  uint16_t m_passFlag;
+  uint16_t m_broadcastLength;
 
   T_OsdkMutexHandle m_msgLock;
   void lockMSG();

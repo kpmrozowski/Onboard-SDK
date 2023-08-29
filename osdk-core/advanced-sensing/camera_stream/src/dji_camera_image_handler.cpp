@@ -81,7 +81,7 @@ bool DJICameraImageHandler::newImageIsReady() const
   return m_newImageFlag;
 }
 
-void DJICameraImageHandler::writeNewImageWithLock(uint8_t* buf, int bufSize, int width, int height, uint64_t time)
+void DJICameraImageHandler::writeNewImageWithLock(uint8_t* buf, int bufSize, int width, int height, long time)
 {
   pthread_mutex_lock(&m_mutex);
 
