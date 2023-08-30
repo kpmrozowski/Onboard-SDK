@@ -660,13 +660,13 @@ DataBroadcast::setUserBroadcastCallback(VehicleCallBack callback,
 }
 
 uint16_t
-DataBroadcast::getPassFlag()
+DataBroadcast::getPassFlag() const
 {
   return m_passFlag;
 }
 
 uint16_t
-DataBroadcast::getBroadcastLength()
+DataBroadcast::getBroadcastLength() const
 {
   return this->m_broadcastLength;
 }

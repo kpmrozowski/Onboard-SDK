@@ -408,7 +408,7 @@ public:
    *  @platforms M210V2, M300
    *  @return uint16_t passFlag
    */
-  uint16_t getPassFlag();
+  uint16_t getPassFlag() const;
 
 public:
   Vehicle* getVehicle() const;
@@ -485,7 +485,7 @@ private:
 
 public:
   void setBroadcastLength(uint16_t length);
-  uint16_t getBroadcastLength();
+  uint16_t getBroadcastLength() const;
 
 private:
   // clang-format off
